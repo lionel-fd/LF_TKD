@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kibon 1er Dan — Tirage aléatoire</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#eef2f7;color:#1a1a1a;padding:2rem 1rem}
+  h1{font-size:18px;font-weight:500;margin-bottom:1.5rem;color:#1a1a1a}
+  .draw-btn{display:block;width:100%;padding:14px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #ccc;border-radius:12px;background:#fff;color:#1a1a1a;letter-spacing:.01em;transition:background .15s}
+  .draw-btn:hover{background:#f0f0ee}
+  .draw-btn:active{transform:scale(.99)}
+  .draw-btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .section{margin-top:1.5rem;opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+  .section.visible{opacity:1;transform:translateY(0)}
+
+  .section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;padding:4px 10px;border-radius:8px;display:inline-block}
+  .cards-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:480px){.cards-row{grid-template-columns:1fr}}
+  .card{border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;background:#fff}
+  .card-head{padding:10px 14px 8px;border-bottom:1px solid #e0e0e0}
+  .card-num{font-size:11px;font-weight:500;opacity:.7}
+  .card-title{font-size:13px;font-weight:500;margin-top:2px}
+  .card-body{padding:10px 14px}
+  .tech{font-size:11px;padding:3px 0;color:#555;border-bottom:1px solid #f0f0ee;line-height:1.4}
+  .tech:last-child{border-bottom:none}
+
+  .blue .card-head{background:#e6f1fb}
+  .blue .card-num{color:#185fa5}
+  .blue .card-title{color:#0c447c}
+  .blue .section-label{background:#e6f1fb;color:#185fa5}
+
+  .green .card-head{background:#eaf3de}
+  .green .card-num{color:#3b6d11}
+  .green .card-title{color:#27500a}
+  .green .section-label{background:#eaf3de;color:#3b6d11}
+
+  .amber .card-head{background:#faeeda}
+  .amber .card-num{color:#854f0b}
+  .amber .card-title{color:#633806}
+  .amber .section-label{background:#faeeda;color:#854f0b}
+
+  .footer{margin-top:2rem;font-size:11px;color:#999;text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Kibon 1er Dan — Tirage aléatoire</h1>
+<button class="draw-btn" id="btn" onclick="draw()">Tirer 2 cartes par catégorie</button>
+<div id="result"></div>
+<div class="footer">CSDGE FFTDA — Module A</div>
+
+<script>
+const data = {
+  blue:{
+    label:"Membres supérieurs + positions",
+    cards:[
+      {n:1,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Han Sonnal Momtong Bakkat Maki","Ap Koubi Seugui","Jebipoum Mok Tchigui"]},
+      {n:2,title:"Tchoumbi Seugui",techs:["Ap Koubi Seugui","Han Sonnal Eulgoul Biteuro Maki","Eulgoul Bande Jileugui"]},
+      {n:3,title:"Tchoumbi Seugui",techs:["Joutchoum Seugui","Han Sonnal Momtong Yop Maki","Momtong Yop Jileugui"]},
+      {n:4,title:"Tchoumbi Seugui",techs:["Ap Koubi Seugui","Jebipoum Mok Tchigui","Deung Joumok Eulgoul Ap Tchigui"]},
+      {n:5,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Keudeuro Momtong Bakkat Maki","Ap Koubi Seugui","Palkoup Dolyeu Tchigui"]},
+      {n:6,title:"Tchoumbi Seugui",techs:["Ap Koubi Seugui","Momtong Hetcheu Maki","Dwitt Koa Seugui","Dou Joumok Jetcheu Jileugui"]},
+      {n:7,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Sonal Are Maki","Beum Seugui","Batang Son Momtong Maki"]},
+      {n:8,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Momtong Bakkat Maki","Ap Koubi Seugui","Me Joumok Neryochigui"]}
+    ]
+  },
+  green:{
+    label:"Membres inférieurs",
+    cards:[
+      {n:1,title:"Kyorugui Tchoumbi Seugui",techs:["Nelyeu Tchagui","Bandal Tchagui","Dwitt Tchagui"]},
+      {n:2,title:"Kyorugui Tchoumbi Seugui",techs:["Yop Tchagui","Ap Bal Fouryeu Tchagui"]},
+      {n:3,title:"Kyorugui Tchoumbi Seugui",techs:["Tuyeu Dolyeu Tchagui","(Cible : raquette)"]},
+      {n:4,title:"Kyorugui Tchoumbi Seugui",techs:["Y Oh Dolyeu Tchagui"]},
+      {n:5,title:"Kyorugui Tchoumbi Seugui",techs:["Sokkot Tchagui"]},
+      {n:6,title:"Kyorugui Tchoumbi Seugui",techs:["Ap Bal Tuyeu Ap Tchagui","(Cible : raquette)"]},
+      {n:7,title:"Kyorugui Tchoumbi Seugui",techs:["Dou Bal Dang Sang Ap Tchagui"]},
+      {n:8,title:"Kyorugui Tchoumbi Seugui",techs:["Bandal Tchagui","Mom Dolyeu Foulyeu Tchagui"]}
+    ]
+  },
+  amber:{
+    label:"Membres supérieurs + inférieurs + positions",
+    cards:[
+      {n:1,title:"Tchoumbi Seugui",techs:["Ap Seugui","Han Sonnal Jebipoum Mok Tchigui","Ap Tchagui","Ap Koubi Seugui","Palkoup Dolyeu Tchigui"]},
+      {n:2,title:"Tchoumbi Seugui",techs:["Ap Seugui","Deung Joumok Eulgoul Bakkat Tchigui","Ap Tchagui","Ap Koubi Seugui","Momtong Baro Jileugui"]},
+      {n:3,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Han Sonnal Momtong Bakkat Maki","Yop Tchagui","Ap Koubi Seugui","Palkoup Momtong Pyojok Tchigui"]},
+      {n:4,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Sonnal Momtong Maki","Dolyeu Tchagui","Ap Koubi Seugui","Eulgoul Bakkat Maki","Momtong Baro Jileugui"]},
+      {n:5,title:"Tchoumbi Seugui",techs:["Ap Koubi Seugui","Han Sonnal Eulgoul Biteuro Maki","Dolyeu Tchagui","Momtong Baro Jileugui"]},
+      {n:6,title:"Tchoumbi Seugui",techs:["Ap Koubi Seugui","Owe San Teul Maki","Ap Bal Yop Tchagui","Ap Koubi Seugui","Jebipoum Mok Tchigui"]},
+      {n:7,title:"Tchoumbi Seugui",techs:["Beum Seugui","Sonnal Momtong Maki","Ap Bal Ap Tchagui","Ap Koubi Seugui","Momtong Baro Jileugui"]},
+      {n:8,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Keudeuro Are Maki","Ap Tchagui","Ap Koubi Seugui","Momtong Doubonn Jileugui"]}
+    ]
+  }
+};
+
+function pick2(arr){
+  const copy=[...arr];
+  const i1=Math.floor(Math.random()*copy.length);
+  const c1=copy.splice(i1,1)[0];
+  const i2=Math.floor(Math.random()*copy.length);
+  const c2=copy[i2];
+  return[c1,c2];
+}
+
+function cardHTML(c,cat){
+  return`<div class="card ${cat}">
+    <div class="card-head">
+      <div class="card-num">N° ${c.n}</div>
+      <div class="card-title">${c.title}</div>
+    </div>
+    <div class="card-body">
+      ${c.techs.map(t=>`<div class="tech">${t}</div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function draw(){
+  const btn=document.getElementById('btn');
+  btn.disabled=true;
+  const cats=['blue','green','amber'];
+  let html='';
+  for(const cat of cats){
+    const d=data[cat];
+    const [c1,c2]=pick2(d.cards);
+    html+=`<div class="section ${cat}" id="sec-${cat}">
+      <div class="section-label">${d.label}</div>
+      <div class="cards-row">${cardHTML(c1,cat)}${cardHTML(c2,cat)}</div>
+    </div>`;
+  }
+  document.getElementById('result').innerHTML=html;
+  cats.forEach((cat,i)=>{
+    setTimeout(()=>{
+      const el=document.getElementById(`sec-${cat}`);
+      if(el) el.classList.add('visible');
+      if(i===cats.length-1) btn.disabled=false;
+    },i*600);
+  });
+}
+</script>
+</body>
+</html>
