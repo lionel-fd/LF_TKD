@@ -1,0 +1,328 @@
+{
+  "dan": 2,
+  "module": "A",
+  "categories": [
+    {
+      "id": "membres-superieurs-positions",
+      "label": "Enchaînement membres supérieurs + positions",
+      "color": "#4A90D9",
+      "abbreviation": "MS"
+    },
+    {
+      "id": "membres-inferieurs",
+      "label": "Enchaînement membres inférieurs",
+      "color": "#7DC742",
+      "abbreviation": "MI"
+    },
+    {
+      "id": "membres-superieurs-inferieurs-positions",
+      "label": "Enchaînement membres supérieurs + inférieurs + positions",
+      "color": "#F5C518",
+      "abbreviation": "MSI"
+    }
+  ],
+  "cards": [
+    {
+      "id": "MS-01",
+      "category": "membres-superieurs-positions",
+      "number": 1,
+      "title": "1. Tchoumbi Seugui",
+      "techniques": [
+        "Dwitt Koubi Seugui",
+        "Sonnal Momtong Maki",
+        "Ap Koubi Seugui",
+        "Pyon Son Keut Are Jetcheu Tchireugui"
+      ],
+      "image": "cards/membres-superieurs-positions/card_01.jpg"
+    },
+    {
+      "id": "MS-02",
+      "category": "membres-superieurs-positions",
+      "number": 2,
+      "title": "2. Tchoumbi Seugui",
+      "techniques": [
+        "Joutchoum Seugui",
+        "Han Sonnal Momtong Yop Maki",
+        "Joumok Pjyojok Jileugui",
+        "Ap Koubi Seugui",
+        "Deung Joumok Eulgoul Bakkat Tchigui"
+      ],
+      "image": "cards/membres-superieurs-positions/card_02.jpg"
+    },
+    {
+      "id": "MS-03",
+      "category": "membres-superieurs-positions",
+      "number": 3,
+      "title": "3. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "An Palmok Momtong Hetcheu Maki",
+        "A Gui Son Caljaebi"
+      ],
+      "image": "cards/membres-superieurs-positions/card_03.jpg"
+    },
+    {
+      "id": "MS-04",
+      "category": "membres-superieurs-positions",
+      "number": 4,
+      "title": "4. Tchoumbi Seugui",
+      "techniques": [
+        "Dwitt Koubi Seugui",
+        "Han Sonnal Momtong Bakkat Maki",
+        "Ap Koubi Seugui",
+        "Palkoup Pyojok Tchigui"
+      ],
+      "image": "cards/membres-superieurs-positions/card_04.jpg"
+    },
+    {
+      "id": "MS-05",
+      "category": "membres-superieurs-positions",
+      "number": 5,
+      "title": "5. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Owe San Teul Maki",
+        "Ap Koubi Seugui",
+        "Mouroup Kokki"
+      ],
+      "image": "cards/membres-superieurs-positions/card_05.jpg"
+    },
+    {
+      "id": "MS-06",
+      "category": "membres-superieurs-positions",
+      "number": 6,
+      "title": "6. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Seugui",
+        "Batang Son Noulo Maki",
+        "Joutchoum Seugui",
+        "Palkoup Yop Tchigui"
+      ],
+      "image": "cards/membres-superieurs-positions/card_06.jpg"
+    },
+    {
+      "id": "MS-07",
+      "category": "membres-superieurs-positions",
+      "number": 7,
+      "title": "7. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Momtong Hetcheu Maki",
+        "Ap Koubi Seugui",
+        "Pyon Sonkeut Sewo Tchileugui"
+      ],
+      "image": "cards/membres-superieurs-positions/card_07.jpg"
+    },
+    {
+      "id": "MS-08",
+      "category": "membres-superieurs-positions",
+      "number": 8,
+      "title": "8. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Jebipoum Mok Tchigui",
+        "Mouroup Kokki"
+      ],
+      "image": "cards/membres-superieurs-positions/card_08.jpg"
+    },
+    {
+      "id": "MI-01",
+      "category": "membres-inferieurs",
+      "number": 1,
+      "title": "1. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Bandal Tchagui",
+        "Dwitt Tchagui"
+      ],
+      "image": "cards/membres-inferieurs/card_01.jpg"
+    },
+    {
+      "id": "MI-02",
+      "category": "membres-inferieurs",
+      "number": 2,
+      "title": "2. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Ap Bal Yop Tchagui",
+        "Ap Bal Foulyeu Tchagui",
+        "Tuyeu Dolyeu Tchagui"
+      ],
+      "image": "cards/membres-inferieurs/card_02.jpg"
+    },
+    {
+      "id": "MI-03",
+      "category": "membres-inferieurs",
+      "number": 3,
+      "title": "3. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Tuyeu Dwitt Tchagui",
+        "(Cible : Raquette)"
+      ],
+      "image": "cards/membres-inferieurs/card_03.jpg"
+    },
+    {
+      "id": "MI-04",
+      "category": "membres-inferieurs",
+      "number": 4,
+      "title": "4. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Keudeup Dolyeu Tchagui",
+        "Ap Bal Foulyeu Tchagui"
+      ],
+      "image": "cards/membres-inferieurs/card_04.jpg"
+    },
+    {
+      "id": "MI-05",
+      "category": "membres-inferieurs",
+      "number": 5,
+      "title": "5. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Sokkot Tchagui"
+      ],
+      "image": "cards/membres-inferieurs/card_05.jpg"
+    },
+    {
+      "id": "MI-06",
+      "category": "membres-inferieurs",
+      "number": 6,
+      "title": "6. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Tuyeu Mom Dolyeu Foulyeu Tchagui",
+        "(Cible : Raquette)"
+      ],
+      "image": "cards/membres-inferieurs/card_06.jpg"
+    },
+    {
+      "id": "MI-07",
+      "category": "membres-inferieurs",
+      "number": 7,
+      "title": "7. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Pyo Jeuk Tchagui",
+        "(Une cible ou sa main)"
+      ],
+      "image": "cards/membres-inferieurs/card_07.jpg"
+    },
+    {
+      "id": "MI-08",
+      "category": "membres-inferieurs",
+      "number": 8,
+      "title": "8. Kyorugui Tchoumbi Seugui",
+      "techniques": [
+        "Dwit Bal Kouroh Foulyeu Tchagui"
+      ],
+      "image": "cards/membres-inferieurs/card_08.jpg"
+    },
+    {
+      "id": "MSI-01",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 1,
+      "title": "1. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Owe San Teul Maki",
+        "Yop Tchagui",
+        "Ap Koubi Seugui",
+        "Palkoup Pyojok Tchigui"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_01.jpg"
+    },
+    {
+      "id": "MSI-02",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 2,
+      "title": "2. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Kaoui Maki",
+        "Ap Tchagui",
+        "Ap Koubi Seugui",
+        "Dang Kyeu Teuk Jileugui"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_02.jpg"
+    },
+    {
+      "id": "MSI-03",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 3,
+      "title": "3. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Pyon Son Keut Are Jetcheu Tchireugui",
+        "Yop Tchagui",
+        "Palkoup Dolyeu Tchigui"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_03.jpg"
+    },
+    {
+      "id": "MSI-04",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 4,
+      "title": "4. Tchoumbi Seugui",
+      "techniques": [
+        "Dwitt Koubi Seugui",
+        "Sonnal Momtong Maki",
+        "Keudeup Yop Tchagui",
+        "Ap Koubi Seugui",
+        "A Gui Son Caljaebi"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_04.jpg"
+    },
+    {
+      "id": "MSI-05",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 5,
+      "title": "5. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Momtong Hetcheu Maki",
+        "Ap Tchagui",
+        "Ap Koubi Seugui",
+        "Mouroup Kokki"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_05.jpg"
+    },
+    {
+      "id": "MSI-06",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 6,
+      "title": "6. Tchoumbi Seugui",
+      "techniques": [
+        "Dwitt Koubi Seugui",
+        "Keudeuro Momtong Bakkat Maki",
+        "Dolyeu Tchagui",
+        "Ap Koubi Seugui",
+        "A Gui Son Caljaebi"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_06.jpg"
+    },
+    {
+      "id": "MSI-07",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 7,
+      "title": "7. Tchoumbi Seugui",
+      "techniques": [
+        "Ap Koubi Seugui",
+        "Han Sonnal Are Maki",
+        "A Gui Son Caljaebi",
+        "Dou Bal Dang Sang Ap Tchagui",
+        "Ap Koubi Seugui",
+        "Me Joumok Nelyeu Tchigui"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_07.jpg"
+    },
+    {
+      "id": "MSI-08",
+      "category": "membres-superieurs-inferieurs-positions",
+      "number": 8,
+      "title": "8. Tchoumbi Seugui",
+      "techniques": [
+        "Dwitt Koubi Seugui",
+        "Keudeuro Are Maki",
+        "Ap Tchagui",
+        "Ap Koubi Seugui",
+        "Momtong Doubonn Jileugui"
+      ],
+      "image": "cards/membres-superieurs-inferieurs-positions/card_08.jpg"
+    }
+  ]
+}
