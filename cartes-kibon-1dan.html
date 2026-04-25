@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartes Kibon 1er Dan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0e0f11;
+      --surface:   #181a1e;
+      --border:    #2a2d33;
+      --text:      #e8eaf0;
+      --muted:     #6b7280;
+      --blue:      #4A90D9;
+      --blue-dim:  #1e3a5f;
+      --green:     #7DC742;
+      --green-dim: #253d14;
+      --yellow:    #F5C518;
+      --yellow-dim:#3d3005;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all .15s;
+      text-decoration: none;
+    }
+    .back-btn:hover { border-color: var(--text); color: var(--text); }
+    .back-btn.hidden { visibility: hidden; pointer-events: none; }
+
+    .header-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(18px, 4vw, 26px);
+      letter-spacing: 0.08em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .header-title span {
+      color: var(--muted);
+      font-size: 0.7em;
+      margin-right: 8px;
+    }
+
+    .breadcrumb {
+      margin-left: auto;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .breadcrumb .current { color: var(--text); }
+
+    .view {
+      display: none;
+      padding: 32px 24px 48px;
+      max-width: 680px;
+      margin: 0 auto;
+      animation: fadeIn .22s ease;
+    }
+    .view.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .view-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .cat-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all .18s;
+      text-align: left;
+      color: var(--text);
+      width: 100%;
+    }
+    .cat-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateX(4px);
+    }
+
+    .cat-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .cat-info { flex: 1; }
+    .cat-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      color: var(--accent);
+    }
+    .cat-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 3px;
+    }
+    .cat-count {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--border);
+      line-height: 1;
+    }
+    .cat-btn:hover .cat-count { color: var(--accent); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .card-num-btn {
+      aspect-ratio: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .18s;
+      color: var(--text);
+    }
+    .card-num-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: scale(1.05);
+    }
+    .card-num-btn .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn .2s ease;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-inner {
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .modal-inner img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 24px 80px rgba(0,0,0,.7);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 36px;
+      height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #333; }
+
+    .home-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--text); }
+
+    @media (max-width: 440px) {
+      .cards-grid { gap: 8px; }
+      .card-num-btn .num { font-size: 30px; }
+      header { padding: 14px 16px; }
+      .view { padding: 24px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn hidden" id="backBtn" onclick="goBack()">← Retour</button>
+  <div class="header-title">
+    <span>MODULE A</span>KIBON 1er DAN
+  </div>
+  <div class="breadcrumb" id="breadcrumb"></div>
+</header>
+
+<div class="view active" id="viewCats">
+  <p class="view-label">Sélectionner une catégorie</p>
+  <div class="cat-grid" id="catGrid"></div>
+  <a class="home-link" href="index.html">← Retour à l'accueil</a>
+</div>
+
+<div class="view" id="viewCards">
+  <p class="view-label" id="cardsLabel"></p>
+  <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <img id="modalImg" src="" alt="Carte Kibon">
+  </div>
+</div>
+
+<script>
+  const CATEGORIES = [
+    {
+      id:    'membres-superieurs-positions',
+      name:  'Membres supérieurs + positions',
+      abbr:  'Tchoumbi Seugui',
+      count: 8,
+      color: '#F5C518',
+      dim:   '#3d3005',
+    },
+    {
+      id:    'membres-superieurs-inferieurs-positions',
+      name:  'Membres supérieurs + inférieurs + positions',
+      abbr:  'Tchoumbi Seugui',
+      count: 8,
+      color: '#4A90D9',
+      dim:   '#1e3a5f',
+    },
+    {
+      id:    'membres-inferieurs',
+      name:  'Membres inférieurs',
+      abbr:  'Kyorugui Tchoumbi Seugui',
+      count: 8,
+      color: '#7DC742',
+      dim:   '#253d14',
+    },
+  ];
+
+  const IMG_BASE = 'cards-1dan';
+
+  const catGrid = document.getElementById('catGrid');
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.style.setProperty('--accent', cat.color);
+    btn.style.setProperty('--accent-dim', cat.dim);
+    btn.innerHTML = `
+      <div class="cat-dot"></div>
+      <div class="cat-info">
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-sub">${cat.abbr} · ${cat.count} combinaisons</div>
+      </div>
+      <div class="cat-count">${cat.count}</div>
+    `;
+    btn.onclick = () => showCards(cat);
+    catGrid.appendChild(btn);
+  });
+
+  function showCards(cat) {
+    document.documentElement.style.setProperty('--accent', cat.color);
+    document.documentElement.style.setProperty('--accent-dim', cat.dim);
+    document.getElementById('cardsLabel').textContent = cat.name;
+
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '';
+    for (let i = 1; i <= cat.count; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'card-num-btn';
+      btn.innerHTML = `<span class="num">${i}</span>`;
+      const n = i;
+      btn.onclick = () => openCard(cat, n);
+      grid.appendChild(btn);
+    }
+
+    document.getElementById('breadcrumb').innerHTML =
+      `<span class="current">${cat.name}</span>`;
+    document.getElementById('backBtn').classList.remove('hidden');
+    showView('viewCards');
+  }
+
+  function goBack() {
+    document.documentElement.style.removeProperty('--accent');
+    document.documentElement.style.removeProperty('--accent-dim');
+    document.getElementById('breadcrumb').innerHTML = '';
+    document.getElementById('backBtn').classList.add('hidden');
+    showView('viewCats');
+  }
+
+  function showView(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function openCard(cat, num) {
+    const pad = String(num).padStart(2, '0');
+    document.getElementById('modalImg').src = `${IMG_BASE}/${cat.id}/card_${pad}.jpg`;
+    document.getElementById('modal').classList.add('active');
+  }
+
+  function closeModal(e) {
+    if (e && e.target !== document.getElementById('modal') && !e.target.classList.contains('modal-close')) return;
+    document.getElementById('modal').classList.remove('active');
+    document.getElementById('modalImg').src = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
