@@ -6,10 +6,10 @@
 <title>Kibon 1er Dan — Tirage aléatoire</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:system-ui,sans-serif;background:#eef2f7;color:#1a1a1a;padding:2rem 1rem}
-  h1{font-size:18px;font-weight:500;margin-bottom:1.5rem;color:#1a1a1a}
-  .draw-btn{display:block;width:100%;padding:14px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #ccc;border-radius:12px;background:#fff;color:#1a1a1a;letter-spacing:.01em;transition:background .15s}
-  .draw-btn:hover{background:#f0f0ee}
+  body{font-family:system-ui,sans-serif;background:#0d1117;color:#e6edf3;padding:2rem 1rem}
+  h1{font-size:18px;font-weight:500;margin-bottom:1.5rem;color:#e6edf3}
+  .draw-btn{display:block;width:100%;padding:14px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #30363d;border-radius:12px;background:#161b22;color:#e6edf3;letter-spacing:.01em;transition:background .15s}
+  .draw-btn:hover{background:#21262d}
   .draw-btn:active{transform:scale(.99)}
   .draw-btn:disabled{opacity:.5;cursor:not-allowed}
 
@@ -19,30 +19,30 @@
   .section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;padding:4px 10px;border-radius:8px;display:inline-block}
   .cards-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media(max-width:480px){.cards-row{grid-template-columns:1fr}}
-  .card{border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;background:#fff}
-  .card-head{padding:10px 14px 8px;border-bottom:1px solid #e0e0e0}
+  .card{border:1px solid #30363d;border-radius:12px;overflow:hidden;background:#161b22}
+  .card-head{padding:10px 14px 8px;border-bottom:1px solid #30363d}
   .card-num{font-size:11px;font-weight:500;opacity:.7}
   .card-title{font-size:13px;font-weight:500;margin-top:2px}
   .card-body{padding:10px 14px}
-  .tech{font-size:11px;padding:3px 0;color:#555;border-bottom:1px solid #f0f0ee;line-height:1.4}
+  .tech{font-size:11px;padding:3px 0;color:#adb5bd;border-bottom:1px solid #21262d;line-height:1.4}
   .tech:last-child{border-bottom:none}
 
-  .blue .card-head{background:#e6f1fb}
-  .blue .card-num{color:#185fa5}
-  .blue .card-title{color:#0c447c}
-  .blue .section-label{background:#e6f1fb;color:#185fa5}
+  .blue .card-head{background:#0d2137}
+  .blue .card-num{color:#4e9af1}
+  .blue .card-title{color:#79b8ff}
+  .blue .section-label{background:#0d2137;color:#4e9af1}
 
-  .green .card-head{background:#eaf3de}
-  .green .card-num{color:#3b6d11}
-  .green .card-title{color:#27500a}
-  .green .section-label{background:#eaf3de;color:#3b6d11}
+  .green .card-head{background:#0d2318}
+  .green .card-num{color:#3fb950}
+  .green .card-title{color:#56d364}
+  .green .section-label{background:#0d2318;color:#3fb950}
 
-  .amber .card-head{background:#faeeda}
-  .amber .card-num{color:#854f0b}
-  .amber .card-title{color:#633806}
-  .amber .section-label{background:#faeeda;color:#854f0b}
+  .amber .card-head{background:#2a1d0a}
+  .amber .card-num{color:#d29922}
+  .amber .card-title{color:#e3b341}
+  .amber .section-label{background:#2a1d0a;color:#d29922}
 
-  .footer{margin-top:2rem;font-size:11px;color:#999;text-align:center}
+  .footer{margin-top:2rem;font-size:11px;color:#484f58;text-align:center}
 </style>
 </head>
 <body>
@@ -54,7 +54,7 @@
 
 <script>
 const data = {
-  amber:{
+  blue:{
     label:"Membres supérieurs + positions",
     cards:[
       {n:1,title:"Tchoumbi Seugui",techs:["Dwitt Koubi Seugui","Han Sonnal Momtong Bakkat Maki","Ap Koubi Seugui","Jebipoum Mok Tchigui"]},
@@ -80,7 +80,7 @@ const data = {
       {n:8,title:"Kyorugui Tchoumbi Seugui",techs:["Bandal Tchagui","Mom Dolyeu Foulyeu Tchagui"]}
     ]
   },
-  blue:{
+  amber:{
     label:"Membres supérieurs + inférieurs + positions",
     cards:[
       {n:1,title:"Tchoumbi Seugui",techs:["Ap Seugui","Han Sonnal Jebipoum Mok Tchigui","Ap Tchagui","Ap Koubi Seugui","Palkoup Dolyeu Tchigui"]},
