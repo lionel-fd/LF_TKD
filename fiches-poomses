@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poomsés — LF TKD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0d10;
+    --bg-raised:#15171b;
+    --bg-card:#181a1f;
+    --line:#272a31;
+    --paper:#ece8e1;
+    --paper-dim:#a8a59f;
+    --cinabre:#c8372e;
+    --cinabre-dim:#7a241e;
+    --indigo:#2c4ed1;
+    --indigo-dim:#1c3082;
+    --or:#b08d3f;
+    --or-dim:#6e591f;
+
+    --display: 'Bebas Neue', sans-serif;
+    --body: 'Barlow Condensed', sans-serif;
+    --kr: 'Noto Serif KR', serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(44,78,209,0.10), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(200,55,46,0.10), transparent 45%);
+    color:var(--paper);
+    font-family:var(--body);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:36px 20px 80px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+  }
+  header .brand{
+    font-family:var(--display);
+    font-size:clamp(28px,5vw,40px);
+    letter-spacing:0.5px;
+    color:var(--paper);
+  }
+  header .brand span{color:var(--cinabre);}
+  header .tagline{
+    font-size:14px;
+    color:var(--paper-dim);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:600;
+  }
+
+  /* ---------- SELECTOR ROW ---------- */
+  .selector{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:34px;
+  }
+  .pbtn{
+    position:relative;
+    width:58px;
+    height:58px;
+    border:1px solid var(--line);
+    background:var(--bg-raised);
+    color:var(--paper-dim);
+    font-family:var(--display);
+    font-size:20px;
+    border-radius:3px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .15s ease, color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .pbtn:hover{
+    border-color:var(--paper-dim);
+    color:var(--paper);
+    transform:translateY(-2px);
+  }
+  .pbtn:focus-visible{
+    outline:2px solid var(--or);
+    outline-offset:2px;
+  }
+  .pbtn.active{
+    background:var(--cinabre);
+    border-color:var(--cinabre);
+    color:#fff;
+  }
+  .pbtn.active.koryo{
+    background:var(--or);
+    border-color:var(--or);
+    color:#1a1305;
+  }
+  .pbtn .sub{
+    position:absolute;
+    bottom:3px;
+    right:6px;
+    font-family:var(--body);
+    font-size:8px;
+    letter-spacing:0.5px;
+    opacity:0.7;
+  }
+
+  /* ---------- MAIN CARD ---------- */
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  .card-head{
+    border-bottom:1px solid var(--line);
+  }
+
+  .head-info{
+    padding:26px 28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--cinabre);
+    font-weight:700;
+  }
+  .eyebrow.koryo-eyebrow{color:var(--or);}
+  .title-main{
+    font-family:var(--display);
+    font-size:clamp(36px,6vw,52px);
+    line-height:1;
+    color:var(--paper);
+    letter-spacing:0.5px;
+  }
+  .title-sub{
+    font-size:17px;
+    color:var(--paper-dim);
+    font-style:italic;
+  }
+  .meta-row{
+    display:flex;
+    gap:18px;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .meta-chip{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--paper-dim);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:4px 10px;
+  }
+  .meta-chip b{color:var(--paper);font-weight:600;}
+
+  /* ---------- BODY GRID ---------- */
+  .card-body{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:0;
+  }
+  @media (max-width:720px){
+    .card-body{grid-template-columns:1fr;}
+  }
+
+  .section{
+    padding:26px 28px;
+  }
+  .section + .section{
+    border-top:1px solid var(--line);
+  }
+  .card-body > .section:first-child{
+    border-right:1px solid var(--line);
+  }
+  @media (max-width:720px){
+    .card-body > .section:first-child{border-right:none;border-bottom:1px solid var(--line);}
+  }
+
+  .section h2{
+    font-family:var(--display);
+    font-size:18px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--indigo);
+    margin:0 0 12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .section h2::before{
+    content:'';
+    width:18px;
+    height:2px;
+    background:var(--indigo);
+    display:inline-block;
+  }
+  .section p{
+    margin:0 0 10px;
+    font-size:16px;
+    line-height:1.55;
+    color:var(--paper);
+  }
+  .section p:last-child{margin-bottom:0;}
+  .section .small-note{
+    font-size:13px;
+    color:var(--paper-dim);
+    font-style:italic;
+  }
+
+  .symbolism-block{
+    background:var(--bg-raised);
+    border-left:3px solid var(--cinabre);
+    padding:14px 16px;
+    margin-top:14px;
+    border-radius:0 4px 4px 0;
+  }
+  .symbolism-block .label{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--cinabre);
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .symbolism-block p{font-size:15px;}
+
+  /* ---------- VIDÉO YOUTUBE ---------- */
+  .video-block{
+    margin-top:14px;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .video-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:10px 16px;
+    color:var(--paper);
+    font-size:14px;
+    font-family:var(--body);
+    letter-spacing:0.5px;
+    transition:border-color .15s, background .15s;
+  }
+  .video-link:hover{
+    border-color:#ff0000;
+    background:#1c1113;
+    color:#fff;
+  }
+  .video-link:hover .yt-icon{opacity:1;}
+  .yt-icon{
+    flex-shrink:0;
+    opacity:0.85;
+    transition:opacity .15s;
+  }
+  .video-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:var(--paper-dim);
+    margin-bottom:6px;
+    font-weight:600;
+  }
+
+  /* ---------- FOOTER NOTE ---------- */
+  .source-note{
+    margin-top:18px;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    text-align:center;
+    line-height:1.5;
+  }
+  .source-note a{color:var(--paper-dim);}
+
+  /* ---------- KEYBOARD NAV HINT ---------- */
+  .nav-hint{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:16px;
+  }
+  .nav-btn{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--paper-dim);
+    font-family:var(--body);
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:8px 18px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:border-color .15s, color .15s;
+  }
+  .nav-btn:hover{border-color:var(--paper-dim);color:var(--paper);}
+  .nav-btn:focus-visible{outline:2px solid var(--or);outline-offset:2px;}
+
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="brand">LF <span>TKD</span></div>
+      <div class="tagline">Outils Taekwondo</div>
+    </div>
+    <div class="tagline" style="text-align:right;">Poomsés · Taegeuk &amp; Koryo</div>
+  </header>
+
+  <div class="selector" id="selector" role="tablist" aria-label="Sélection du poomse"></div>
+
+  <div class="card" id="card"></div>
+
+  <div class="nav-hint">
+    <button class="nav-btn" id="prevBtn">◂ Précédent</button>
+    <button class="nav-btn" id="nextBtn">Suivant ▸</button>
+  </div>
+
+  <p class="source-note">
+    Symbolique des trigrammes (Palgwe) selon la tradition du Taegeuk — terminologie technique vérifiée sur le lexique officiel FFTDA (2005).<br>
+    Pour les éléments propres à l'examen CSDGE, se référer aux documents officiels du jury.
+  </p>
+
+</div>
+
+<script>
+/* ===================== DONNÉES ===================== */
+/* trigram: tableau de 3 traits, du BAS vers le HAUT.
+   true = trait plein (yang), false = trait brisé (yin) */
+const POOMSES = [
+  {
+    id:1, name:"Taegeuk Il Jang", num:"1", korean:"태극 1장",
+    trigramName:"Keon (☰)", trigram:[true,true,true],
+    element:"Le Ciel", color:"cinabre", video:"https://www.youtube.com/watch?v=WhkjRruCBTo&t=153s",
+    sens:"Premier des huit Taegeuk, il pose les fondations gestuelles du Poomsé : déplacements de base, ap-seogi et ap-kubi, blocages 3 niveaux et coups de poing élémentaires. Technique pied : Ap chagi",
+    symbolique:"Keon représente le Ciel et la lumière : l'origine de toute chose, le yang pur et absolu. C'est le commencement — le poomsé le plus simple techniquement, à l'image d'un monde qui débute.",
+    technique:"Marche avant en ap-kubi, montgi makgi, (ap-joomeok) jirugi. Rythme uniforme, lignes droites, premier contact avec la notion de centrage."
+  },
+  {
+    id:2, name:"Taegeuk I Jang", num:"2", korean:"태극 2장",
+    trigramName:"Tae (☱)", trigram:[false,true,true],
+    element:"Le Lac", color:"indigo", video:"https://www.youtube.com/watch?v=tGlrUplKHh8&t=146s",
+    sens:"IComplexifie légèrement les enchaînements bras tout en gardant une structure linéaire proche du premier Taegeuk. Distingue les coups de poing tronc et tête",
+    symbolique:"Tae représente le Lac : une eau calme et joyeuse en surface, mais qui possède une profondeur et une fermeté intérieures. Il évoque la douceur apparente qui n'exclut pas la force de caractère.",
+    technique:"Ap-chagi, montong makgi renforcé, alternance de hauteurs de garde. Travail de la fermeté dans la souplesse du mouvement."
+  },
+  {
+    id:3, name:"Taegeuk Sam Jang", num:"3", korean:"태극 3장",
+    trigramName:"Li (☲)", trigram:[true,false,true],
+    element:"Le Feu", color:"cinabre", video:"https://www.youtube.com/watch?v=ksSqKt0UkWo&t=139s",
+    sens:"Premier poomsé à introduire un réel changement de rythme avec des séquences rapides (doubon jirugi répétés) : la dynamique et la vitesse d'exécution deviennent un objectif technique. Introduit le sonal (main ouverte)",
+    symbolique:"Li représente le Feu et le Soleil : la chaleur, l'énergie active, la vitalité. Le feu éclaire autant qu'il consume — symbole d'une puissance qu'il faut savoir diriger.",
+    technique:"Dwit-kubi sogi, séquences rapides de jirugi, momtong an makgi."
+  },
+  {
+    id:4, name:"Taegeuk Sa Jang", num:"4", korean:"태극 4장",
+    trigramName:"Jin (☳)", trigram:[true,true,false],
+    element:"Le Tonnerre", color:"indigo", video:"https://www.youtube.com/watch?v=Lt917gacJho&t=165s",
+    sens:"Considéré comme un saut technique notable : blocage renforcé (keudeuro maki) blocage et attaque simultanée (jebipoum mok chigi) revers du poing (dang joumok ap chigi) attaque en piqué dang kyeu teuk sewo ap chigi. Technique de pied : yop chigi.",
+    symbolique:"Jin représente le Tonnerre : une force soudaine, explosive, qui surgit sans prévenir. Il inspire à la fois le respect par sa puissance et la prudence face à une énergie incontrôlée.",
+    technique:"Exige une explosivité maîtrisée."
+  },
+  {
+    id:5, name:"Taegeuk O Jang", num:"5", korean:"태극 5장",
+    trigramName:"Seon (☴)", trigram:[false,false,true],
+    element:"Le Vent", color:"cinabre", video:"https://www.youtube.com/watch?v=VdqNEAHWCBM&t=146s",
+    sens:"Marque l'arrivée des techniques de coude et d'un travail plus martial : le poomsé devient plus incisif, avec des changements de direction marqués.",
+    symbolique:"Seon représente le Vent : une force qui peut être brise légère ou tempête destructrice. Il symbolise la flexibilité qui plie sans se briser, et la persévérance discrète.",
+    technique:"Mejoumok nellio chigi, Palkoup dollyo-chigi, palkoup pyojeok chigi, koa sogi."
+  },
+  {
+    id:6, name:"Taegeuk Yuk Jang", num:"6", korean:"태극 6장",
+    trigramName:"Gam (☵)", trigram:[false,true,false],
+    element:"L'Eau", color:"indigo", video:"https://www.youtube.com/watch?v=jcBwWo4wN7c&t=136s",
+    sens:"Introduit le dollyo-chagi (coup de pied circulaire) mouvement en torsion (bitouro maki) blocage vers l'extérieur (bakkat maki) meme blocage des 2  mains simultané (hetcho maki) blocage main ouverte (batangson maki) et davantage de fluidité entre les techniques de bras et de jambe, avec des transitions plus continues.",
+    symbolique:"Gam représente l'Eau : un élément qui s'adapte à tout obstacle, contourne, s'infiltre, et finit toujours par atteindre son but en s'écoulant vers le bas. Symbole de persévérance et d'adaptabilité.",
+    technique:"Dollyo chagi, bitouro maki, fluidité des liaisons bras-jambe. Le pratiquant doit montrer une continuité de mouvement plus marquée."
+  },
+  {
+    id:7, name:"Taegeuk Chil Jang", num:"7", korean:"태극 7장",
+    trigramName:"Gan (☶)", trigram:[true,false,false],
+    element:"La Montagne", color:"cinabre", video:"https://www.youtube.com/watch?v=6FUM1p6qqhQ",
+    sens:"Poomsé charnière avant Pal Jang : positions basses et ancrées (beom seogi, Dwit-kubi), présence posturale plus affirmée.",
+    symbolique:"Gan représente la Montagne : l'immobilité, la stabilité, l'arrêt. Il évoque la solidité d'un ancrage profond et la sagesse de savoir s'arrêter avant d'agir — la réflexion qui précède le mouvement.",
+    technique:"Beom-seogi, moa seogi et bo joumok, kawi maki, moureup chigi, doujomok jecho jireugi, utgeuro are maki, pyojeok chagi, juchum seugi et pyojeok chagi). Exige un ancrage et une stabilité accrus."
+  },
+  {
+    id:8, name:"Taegeuk Pal Jang", num:"8", korean:"태극 8장",
+    trigramName:"Gon (☷)", trigram:[false,false,false],
+    element:"La Terre", color:"indigo", video:"https://www.youtube.com/watch?v=Gr_Je2ZkgkI&t=168s",
+    sens:"Dernier des huit Taegeuk, il synthétise les acquis techniques précédents (sauts, double coup de pied, techniques croisées) avant l'entrée dans les poomsés de Dan.",
+    symbolique:"Gon représente la Terre : elle reçoit tout, nourrit tout, et donne naissance à la vie. Trigramme entièrement yin, il marque symboliquement un retour à l'origine — la fin d'un cycle qui annonce le suivant (Koryo).",
+    technique:"Twio ap-chagi (saut), du-bal-dangsang chagi, oesanteul maki, dangkyeuteuk jireugi . Synthèse des acquis avant le passage en Dan."
+  },
+  {
+    id:"koryo", name:"Koryo", num:"1er Dan", korean:"고려",
+    trigramName:"Seonbi (선비)", trigram:null,
+    element:"L'Érudit-guerrier", color:"or",
+    sens:"Premier poomsé de Dan, Koryo marque l'entrée dans l'enseignement supérieur du Taekwondo. Il ne repose plus sur un trigramme du Palgwe mais sur l'esprit martial et moral du royaume historique de Koryo.",
+    symbolique:"Koryo tire son nom de l'ancien royaume coréen, réputé pour ses guerriers ayant résisté aux invasions. Le mouvement d'ouverture, mains jointes en garde basse puis remontée lente, symbolise le 'Seonbi' : l'érudit-guerrier, droit dans ses convictions, ferme mais cultivé — l'idéal moral du Taekwondo affirmé.",
+    technique:"garde d'ouverture : Tongmilgi junbi sogi, pyojeok chigi, geodeup chagi, jecho jireugi, nullo kokki (moureup kokki), aguison apchigi (aguison caljaebi), palkoup yop chigi, sonal bakkat chigi, batangson nullo maki, mejumok pyojok are chigi, an palmok hecho maki, pyojok jireugi, équilibres prolongés. Exécution martiale, ferme, avec des arrêts nets marquant la détermination.",
+    video:"https://www.youtube.com/watch?v=mGa60JDtWmg",
+    isDan:true
+  }
+];
+
+let current = 0;
+
+/* ===================== RENDU ===================== */
+function renderSelector(){
+  const sel = document.getElementById('selector');
+  sel.innerHTML = POOMSES.map((p, i) => {
+    const isKoryo = p.id === 'koryo';
+    return `<button class="pbtn ${isKoryo?'koryo':''}" data-i="${i}" role="tab" aria-selected="${i===current}" title="${p.name}">
+      ${isKoryo ? 'K' : p.num}
+      ${isKoryo ? '<span class=\"sub\">DAN</span>' : ''}
+    </button>`;
+  }).join('');
+  sel.querySelectorAll('.pbtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ current = parseInt(btn.dataset.i); render(); });
+  });
+}
+
+function render(){
+  const p = POOMSES[current];
+  const colorVar = p.id === 'koryo' ? '--or' : (p.color === 'cinabre' ? '--cinabre' : '--indigo');
+  const isKoryo = p.id === 'koryo';
+
+  document.querySelectorAll('.pbtn').forEach((btn,i)=>{
+    btn.classList.toggle('active', i===current);
+    btn.setAttribute('aria-selected', i===current);
+  });
+
+  const card = document.getElementById('card');
+  card.innerHTML = `
+    <div class="card-head">
+      <div class="head-info">
+        <div class="eyebrow ${isKoryo?'koryo-eyebrow':''}">${isKoryo ? 'Poomsé de Dan · 1er Dan' : 'Taegeuk · Niveau Keup'}</div>
+        <div class="title-main">${p.name}</div>
+        <div class="title-sub">${p.korean} — ${p.element}</div>
+        <div class="meta-row">
+          <div class="meta-chip">N° <b>${p.num}</b></div>
+          <div class="meta-chip">Trigramme <b>${p.trigramName}</b></div>
+          <div class="meta-chip">Élément <b>${p.element}</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <h2>Sens &amp; place dans le cursus</h2>
+        <p>${p.sens}</p>
+        <div class="symbolism-block">
+          <div class="label">Symbolique</div>
+          <p>${p.symbolique}</p>
+        </div>
+      </div>
+      <div class="section">
+        <h2>Repères techniques</h2>
+        <p>${p.technique}</p>
+        <p class="small-note">Repères indicatifs — se référer aux fiches Kibon et aux documents CSDGE pour le détail exact attendu à l'examen.</p>
+        ${p.video ? `
+        <div class="video-block">
+          <div class="video-label">Vidéo de référence</div>
+          <a class="video-link" href="${p.video}" target="_blank" rel="noopener">
+            <svg class="yt-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="28" height="20" rx="4" fill="#FF0000"/>
+              <path d="M11.5 5.5L20 10L11.5 14.5V5.5Z" fill="white"/>
+            </svg>
+            Voir sur YouTube
+          </a>
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  current = (current - 1 + POOMSES.length) % POOMSES.length;
+  render();
+});
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  current = (current + 1) % POOMSES.length;
+  render();
+});
+
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'ArrowRight'){ current = (current+1)%POOMSES.length; render(); }
+  if(e.key === 'ArrowLeft'){ current = (current-1+POOMSES.length)%POOMSES.length; render(); }
+});
+
+renderSelector();
+render();
+</script>
+
+</body>
+</html>
