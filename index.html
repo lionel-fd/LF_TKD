@@ -58,13 +58,12 @@
   }
 
   .col{
-    flex:1;
     display:flex;
     flex-direction:column;
     gap:12px;
     padding:0 24px;
   }
-  .col:first-child{flex:3;padding-left:0}
+  .col:first-child{flex:2;padding-left:0}
   .col:last-child{flex:1;padding-right:0}
 
   .vdivider{
@@ -94,13 +93,6 @@
   }
   .card:hover .card-arrow{color:#4e9af1;transform:translateX(3px)}
 
-  /* ── Cards PDF (rouge) ── */
-  .card.pdf:hover{
-    border-color:#e05252;
-    box-shadow:0 0 16px rgba(224,82,82,.15);
-  }
-  .card.pdf:hover .card-arrow{color:#e05252}
-
   .divider{
     border:none;border-top:1px solid #21262d;margin:4px 0;
   }
@@ -120,10 +112,39 @@
   .col-title{
     font-family:'Bebas Neue',sans-serif;
     font-size:20px;letter-spacing:.08em;text-transform:uppercase;
-    color:#e05252;margin:4px 0 2px;
+    color:#e05252;margin:4px 0 10px;
   }
 
-  /* ── Mobile : colonnes empilées ── */
+  /* ── Liens PDF ── */
+  .pdf-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .pdf-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#8b949e;
+    text-decoration:none;
+    font-size:13px;
+    padding:6px 0;
+    border-bottom:1px solid #21262d;
+    transition:color .2s;
+  }
+  .pdf-link:last-child{border-bottom:none}
+  .pdf-link:hover{color:#e05252}
+  .pdf-link .pdf-icon{font-size:16px;flex-shrink:0}
+  .pdf-link .pdf-label{flex:1}
+  .pdf-link .pdf-desc{
+    font-size:11px;
+    color:#484f58;
+    margin-top:1px;
+  }
+  .pdf-link:hover .pdf-desc{color:#8b949e}
+
+  /* ── Mobile ── */
   @media(max-width:620px){
     .columns{flex-direction:column}
     .vdivider{width:100%;height:1px;align-self:auto;margin:8px 0}
@@ -240,33 +261,33 @@
   <div class="col">
     <div class="col-title">Lexiques</div>
 
-    <a class="card pdf" href="Documents-TKD/Lexique_techpieds.pdf" target="_blank">
-      <div class="card-icon">📄</div>
-      <div class="card-text">
-        <div class="card-title">Tech pieds</div>
-        <div class="card-desc">Lexique des techniques de pieds</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </a>
+    <div class="pdf-list">
 
-    <a class="card pdf" href="Documents-TKD/LexiqueOfficiel%202005.pdf" target="_blank">
-      <div class="card-icon">📄</div>
-      <div class="card-text">
-        <div class="card-title">Termes courants</div>
-        <div class="card-desc">Lexique officiel 2005</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </a>
+      <a class="pdf-link" href="Documents-TKD/Lexique_techpieds.pdf" target="_blank">
+        <span class="pdf-icon">📄</span>
+        <div>
+          <div class="pdf-label">Tech pieds</div>
+          <div class="pdf-desc">Techniques de pieds</div>
+        </div>
+      </a>
 
-    <a class="card pdf" href="Documents-TKD/Lexique_attaquessuperieures.pdf" target="_blank">
-      <div class="card-icon">📄</div>
-      <div class="card-text">
-        <div class="card-title">Tech bras</div>
-        <div class="card-desc">Lexique des attaques supérieures</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </a>
+      <a class="pdf-link" href="Documents-TKD/LexiqueOfficiel%202005.pdf" target="_blank">
+        <span class="pdf-icon">📄</span>
+        <div>
+          <div class="pdf-label">Termes courants</div>
+          <div class="pdf-desc">Lexique officiel 2005</div>
+        </div>
+      </a>
 
+      <a class="pdf-link" href="Documents-TKD/Lexique_attaquessuperieures.pdf" target="_blank">
+        <span class="pdf-icon">📄</span>
+        <div>
+          <div class="pdf-label">Tech bras</div>
+          <div class="pdf-desc">Attaques supérieures</div>
+        </div>
+      </a>
+
+    </div>
   </div>
 
 </div>
