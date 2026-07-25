@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kibon 3e Dan — Tirage aléatoire</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0d1117;color:#e6edf3;padding:2rem 1rem}
+  h1{font-size:18px;font-weight:500;margin-bottom:1.5rem;color:#e6edf3}
+  .draw-btn{display:block;width:100%;padding:14px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #30363d;border-radius:12px;background:#161b22;color:#e6edf3;letter-spacing:.01em;transition:background .15s}
+  .draw-btn:hover{background:#21262d}
+  .draw-btn:active{transform:scale(.99)}
+  .draw-btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .section{margin-top:1.5rem;opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+  .section.visible{opacity:1;transform:translateY(0)}
+
+  .section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;padding:4px 10px;border-radius:8px;display:inline-block}
+  .cards-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:480px){.cards-row{grid-template-columns:1fr}}
+
+  .card-img-wrap{border:1px solid #30363d;border-radius:12px;overflow:hidden;background:#161b22}
+  .card-img-wrap img{display:block;width:100%;height:auto}
+
+  .blue .section-label{background:#0d2137;color:#4e9af1}
+  .green .section-label{background:#0d2318;color:#3fb950}
+  .amber .section-label{background:#2a1d0a;color:#d29922}
+
+  .footer{margin-top:2rem;font-size:11px;color:#484f58;text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Kibon 3e Dan — Tirage aléatoire</h1>
+<button class="draw-btn" id="btn" onclick="draw()">Tirer 2 cartes par catégorie</button>
+<div id="result"></div>
+<div class="footer">CSDGE FFTDA — Module A</div>
+
+<script>
+// Chemin racine des images (relatif à ce fichier HTML dans le repo)
+const IMG_BASE = 'kibon-3dan/kibon-3dan/cards';
+
+const data = {
+  blue:{
+    label:"Membres supérieurs + positions",
+    catId:"membres-superieurs-positions",
+    count:8
+  },
+  green:{
+    label:"Membres inférieurs",
+    catId:"membres-inferieurs",
+    count:8
+  },
+  amber:{
+    label:"Membres supérieurs + inférieurs + positions",
+    catId:"membres-superieurs-inferieurs-positions",
+    count:8
+  }
+};
+
+function pick2(count){
+  const pool = Array.from({length:count}, (_,i) => i+1);
+  const i1 = Math.floor(Math.random()*pool.length);
+  const n1 = pool.splice(i1,1)[0];
+  const i2 = Math.floor(Math.random()*pool.length);
+  const n2 = pool[i2];
+  return [n1, n2];
+}
+
+function cardHTML(catId, num){
+  const pad = String(num).padStart(2,'0');
+  const src = `${IMG_BASE}/${catId}/card_${pad}.jpg`;
+  return `<div class="card-img-wrap">
+    <img src="${src}" alt="Carte ${num}">
+  </div>`;
+}
+
+function draw(){
+  const btn = document.getElementById('btn');
+  btn.disabled = true;
+
+  const cats = ['blue','green','amber'];
+
+  let html = '';
+  for(const cat of cats){
+    const d = data[cat];
+    const [n1,n2] = pick2(d.count);
+    html += `<div class="section ${cat}" id="sec-${cat}">
+      <div class="section-label">${d.label}</div>
+      <div class="cards-row">${cardHTML(d.catId,n1)}${cardHTML(d.catId,n2)}</div>
+    </div>`;
+  }
+  document.getElementById('result').innerHTML = html;
+
+  cats.forEach((cat, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(`sec-${cat}`);
+      if(el) el.classList.add('visible');
+      if(i === cats.length - 1) btn.disabled = false;
+    }, i * 600);
+  });
+}
+</script>
+</body>
+</html>
