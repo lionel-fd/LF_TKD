@@ -41,21 +41,28 @@
 // Chemin racine des images (convention propre au 1er Dan)
 const IMG_BASE = 'cards-1dan';
 
+// Ordre d'affichage fixe : supérieurs -> inférieurs -> mixte
+// La couleur est un attribut propre à chaque catégorie (indépendant de l'ordre)
+const cats = ['sup', 'inf', 'mixed'];
+
 const data = {
-  blue:{
+  sup:{
     label:"Membres supérieurs + positions",
     catId:"membres-superieurs-positions",
-    count:8
+    count:8,
+    color:"amber"
   },
-  green:{
+  inf:{
     label:"Membres inférieurs",
     catId:"membres-inferieurs",
-    count:8
+    count:8,
+    color:"green"
   },
-  amber:{
+  mixed:{
     label:"Membres supérieurs + inférieurs + positions",
     catId:"membres-superieurs-inferieurs-positions",
-    count:8
+    count:8,
+    color:"blue"
   }
 };
 
@@ -80,22 +87,20 @@ function draw(){
   const btn = document.getElementById('btn');
   btn.disabled = true;
 
-  const cats = ['blue','green','amber'];
-
   let html = '';
-  for(const cat of cats){
-    const d = data[cat];
+  for(const key of cats){
+    const d = data[key];
     const [n1,n2] = pick2(d.count);
-    html += `<div class="section ${cat}" id="sec-${cat}">
+    html += `<div class="section ${d.color}" id="sec-${key}">
       <div class="section-label">${d.label}</div>
       <div class="cards-row">${cardHTML(d.catId,n1)}${cardHTML(d.catId,n2)}</div>
     </div>`;
   }
   document.getElementById('result').innerHTML = html;
 
-  cats.forEach((cat, i) => {
+  cats.forEach((key, i) => {
     setTimeout(() => {
-      const el = document.getElementById(`sec-${cat}`);
+      const el = document.getElementById(`sec-${key}`);
       if(el) el.classList.add('visible');
       if(i === cats.length - 1) btn.disabled = false;
     }, i * 600);
