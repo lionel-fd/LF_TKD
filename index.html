@@ -7,6 +7,8 @@
 <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="favicon_io/android-chrome-512x512.png">
 <meta name="apple-mobile-web-app-title" content="LF TKD">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
 
@@ -18,13 +20,11 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     padding:2rem 1rem;
   }
 
   .logo{
-    font-size:48px;
-    margin-bottom:1rem;
+    font-size:48px;margin-bottom:1rem;
     animation:float 3s ease-in-out infinite;
   }
   @keyframes float{
@@ -33,138 +33,107 @@
   }
 
   .badge{
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:#8b949e;
-    margin-bottom:.5rem;
+    font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:#8b949e;margin-bottom:.5rem;
   }
 
   h1{
-    font-size:28px;
-    font-weight:700;
-    text-align:center;
+    font-size:28px;font-weight:700;text-align:center;
     background:linear-gradient(90deg,#4e9af1,#fff 50%,#e05252);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
-    margin-bottom:.5rem;
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;margin-bottom:.5rem;
   }
 
   .subtitle{
-    font-size:13px;
-    color:#8b949e;
-    text-align:center;
-    margin-bottom:2.5rem;
+    font-size:13px;color:#8b949e;text-align:center;margin-bottom:2.5rem;
   }
 
-  .cards{
+  /* ── Deux colonnes ── */
+  .columns{
+    display:flex;
+    gap:0;
+    width:100%;
+    max-width:820px;
+    align-items:flex-start;
+  }
+
+  .col{
+    flex:1;
     display:flex;
     flex-direction:column;
     gap:12px;
-    width:100%;
-    max-width:380px;
+    padding:0 24px;
+  }
+  .col:first-child{padding-left:0}
+  .col:last-child{padding-right:0}
+
+  .vdivider{
+    width:1px;background:#21262d;
+    align-self:stretch;flex-shrink:0;
   }
 
+  /* ── Cards ── */
   .card{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:16px 18px;
-    border-radius:14px;
-    background:#161b22;
-    border:1px solid #30363d;
-    text-decoration:none;
-    color:#e6edf3;
-    transition:transform .2s, border-color .2s, box-shadow .2s;
+    display:flex;align-items:center;gap:14px;
+    padding:16px 18px;border-radius:14px;
+    background:#161b22;border:1px solid #30363d;
+    text-decoration:none;color:#e6edf3;
+    transition:transform .2s,border-color .2s,box-shadow .2s;
     cursor:pointer;
   }
   .card:hover{
-    transform:translateY(-2px);
-    border-color:#4e9af1;
+    transform:translateY(-2px);border-color:#4e9af1;
     box-shadow:0 0 16px rgba(78,154,241,.15);
   }
-
-  .card-icon{
-    font-size:26px;
-    flex-shrink:0;
-  }
-
-  .card-text{}
-  .card-title{
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:2px;
-  }
-  .card-desc{
-    font-size:11px;
-    color:#8b949e;
-    line-height:1.4;
-  }
-
+  .card-icon{font-size:26px;flex-shrink:0}
+  .card-title{font-size:14px;font-weight:600;margin-bottom:2px}
+  .card-desc{font-size:11px;color:#8b949e;line-height:1.4}
   .card-arrow{
-    margin-left:auto;
-    color:#30363d;
-    font-size:18px;
-    transition:color .2s, transform .2s;
+    margin-left:auto;color:#30363d;font-size:18px;
+    transition:color .2s,transform .2s;
   }
-  .card:hover .card-arrow{
-    color:#4e9af1;
-    transform:translateX(3px);
+  .card:hover .card-arrow{color:#4e9af1;transform:translateX(3px)}
+
+  /* ── Cards PDF (rouge) ── */
+  .card.pdf:hover{
+    border-color:#e05252;
+    box-shadow:0 0 16px rgba(224,82,82,.15);
   }
+  .card.pdf:hover .card-arrow{color:#e05252}
 
   .divider{
-    width:100%;
-    max-width:380px;
-    border:none;
-    border-top:1px solid #21262d;
-    margin:1rem 0;
+    border:none;border-top:1px solid #21262d;margin:4px 0;
   }
 
-  .coming{
-    opacity:.4;
-    pointer-events:none;
+  .poom-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:20px;letter-spacing:.08em;text-transform:uppercase;
+    color:#FF5330;margin:4px 0 2px;
   }
 
-  .tag{
-    font-size:10px;
-    padding:2px 8px;
-    border-radius:20px;
-    background:#21262d;
-    color:#8b949e;
-    margin-left:auto;
-    white-space:nowrap;
+  .section-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:20px;letter-spacing:.08em;text-transform:uppercase;
+    color:#F5C518;margin:4px 0 2px;
   }
 
-  .poom-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #FF5330;
-    margin: 0px 0 10px;
+  .col-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:20px;letter-spacing:.08em;text-transform:uppercase;
+    color:#e05252;margin:4px 0 2px;
   }
 
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #F5C518;
-    margin: 0px 0 10px;
+  /* ── Mobile : colonnes empilées ── */
+  @media(max-width:620px){
+    .columns{flex-direction:column}
+    .vdivider{width:100%;height:1px;align-self:auto;margin:8px 0}
+    .col{padding:0}
   }
-
 
   footer{
-    margin-top:3rem;
-    font-size:11px;
-    color:#484f58;
-    text-align:center;
+    margin-top:3rem;font-size:11px;color:#484f58;text-align:center;
   }
-  footer span{
-    color:#e05252;
-  }
+  footer span{color:#e05252}
 </style>
 </head>
 <body>
@@ -174,89 +143,133 @@
 <h1>LF TKD</h1>
 <p class="subtitle">Ressources numériques pour les passages de grade</p>
 
+<div class="columns">
 
-  <a class="card" href="https://www.appsheet.com/start/087eca01-40fd-4c94-8002-6c9920e71c24" target="_blank">
-    <div class="card-icon">📱</div>
-    <div class="card-text">
-      <div class="card-title">Inscriptions IgnyTKD — saison 26-27</div>
-      <div class="card-desc">Gestion des inscriptions club et passages de grades - accès restreint</div>
-    </div>
-    <div class="card-arrow">›</div>
-  </a>
-  
-<hr class="divider">
- 
-<div class="cards">
-<div class="poom-title">Poomsae</div>
- <a class="card" href="fiches-poomses.html">
-  <div class="card-icon">🥋</div>
-  <div class="card-text">
-  <div class="card-desc">Taegeuk 1–8 & Dan 1-2 — symbolique, sens et repères techniques</div>
+  <!-- ── Colonne gauche : outils ── -->
+  <div class="col">
+
+    <a class="card" href="https://www.appsheet.com/start/087eca01-40fd-4c94-8002-6c9920e71c24" target="_blank">
+      <div class="card-icon">📱</div>
+      <div class="card-text">
+        <div class="card-title">Inscriptions IgnyTKD — saison 26-27</div>
+        <div class="card-desc">Gestion des inscriptions club et passages de grades - accès restreint</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <hr class="divider">
+    <div class="poom-title">Poomsae</div>
+
+    <a class="card" href="fiches-poomses.html">
+      <div class="card-icon">🥋</div>
+      <div class="card-text">
+        <div class="card-desc">Taegeuk 1–8 & Dan 1-2 — symbolique, sens et repères techniques</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <hr class="divider">
+    <div class="section-title">Kibon 1er Dan</div>
+
+    <a class="card" href="kibon_1dan_tirage.html">
+      <div class="card-icon">🎴</div>
+      <div class="card-text">
+        <div class="card-title">Tirage 1er Dan v0</div>
+        <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card" href="cartes-kibon-1dan.html">
+      <div class="card-icon">🃏</div>
+      <div class="card-text">
+        <div class="card-title">Cartes Kibon 1er Dan</div>
+        <div class="card-desc">Cartes officielles par catégorie — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <hr class="divider">
+    <div class="section-title">Kibon 2e Dan</div>
+
+    <a class="card" href="kibon_2dan_tirage.html">
+      <div class="card-icon">🎴</div>
+      <div class="card-text">
+        <div class="card-title">Tirage 2e Dan v0</div>
+        <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card" href="cartes-kibon-2dan.html">
+      <div class="card-icon">🃏</div>
+      <div class="card-text">
+        <div class="card-title">Cartes Kibon 2e Dan</div>
+        <div class="card-desc">Cartes officielles par catégorie — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <hr class="divider">
+    <div class="section-title">Kibon 3e Dan</div>
+
+    <a class="card" href="kibon_3dan_tirage.html">
+      <div class="card-icon">🎴</div>
+      <div class="card-text">
+        <div class="card-title">Tirage 3e Dan v1</div>
+        <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card" href="cartes-kibon-3dan.html">
+      <div class="card-icon">🃏</div>
+      <div class="card-text">
+        <div class="card-title">Cartes Kibon 3e Dan</div>
+        <div class="card-desc">Cartes officielles par catégorie — Module A</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
   </div>
-  <div class="card-arrow">›</div>
-</a>
- 
-<hr class="divider"> 
-  <h3 class="section-title">Kibon 1er Dan</h3>
-  <a class="card" href="kibon_1dan_tirage.html">
-    <div class="card-icon">🎴</div>
-    <div class="card-text">
-      <div class="card-title">Tirage 1e Dan</div>
-      <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
-    </div>
-    <div class="card-arrow">›</div>
-  </a>
 
-  <a class="card" href="cartes-kibon-1dan.html">
-  <div class="card-icon">🃏</div>
-  <div class="card-text">
-    <div class="card-title">Cartes Kibon 1e Dan</div>
-    <div class="card-desc">Cartes officielles par catégorie — Module A</div>
+  <!-- ── Séparateur vertical ── -->
+  <div class="vdivider"></div>
+
+  <!-- ── Colonne droite : lexiques PDF ── -->
+  <div class="col">
+    <div class="col-title">Lexiques</div>
+
+    <a class="card pdf" href="Documents-TKD/Lexique_techpieds.pdf" target="_blank">
+      <div class="card-icon">📄</div>
+      <div class="card-text">
+        <div class="card-title">Tech pieds</div>
+        <div class="card-desc">Lexique des techniques de pieds</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card pdf" href="Documents-TKD/LexiqueOfficiel%202005.pdf" target="_blank">
+      <div class="card-icon">📄</div>
+      <div class="card-text">
+        <div class="card-title">Termes courants</div>
+        <div class="card-desc">Lexique officiel 2005</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card pdf" href="Documents-TKD/Lexique_attaquessuperieures.pdf" target="_blank">
+      <div class="card-icon">📄</div>
+      <div class="card-text">
+        <div class="card-title">Tech bras</div>
+        <div class="card-desc">Lexique des attaques supérieures</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
   </div>
-  <div class="card-arrow">›</div>
-</a>
 
-<hr class="divider">
-  <h3 class="section-title">Kibon 2e Dan</h3>
-   <a class="card" href="kibon_2dan_tirage.html">
-    <div class="card-icon">🎴</div>
-    <div class="card-text">
-      <div class="card-title">Tirage 2e Dan</div>
-      <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
-    </div>
-    <div class="card-arrow">›</div>
-  </a>
-
-  <a class="card" href="cartes-kibon-2dan.html">
-  <div class="card-icon">🃏</div>
-  <div class="card-text">
-    <div class="card-title">Cartes Kibon 2è Dan</div>
-    <div class="card-desc">Cartes officielles par catégorie — Module A</div>
-  </div>
-  <div class="card-arrow">›</div>
-</a>
-
- <hr class="divider">
-  <h3 class="section-title">Kibon 3e Dan</h3>
-   <a class="card" href="kibon_3dan_tirage.html">
-    <div class="card-icon">🎴</div>
-    <div class="card-text">
-      <div class="card-title">Tirage 3e Dan</div>
-      <div class="card-desc">Tirage aléatoire des techniques — Module A</div>
-    </div>
-    <div class="card-arrow">›</div>
-  </a>
-
-  <a class="card" href="cartes-kibon-3dan.html">
-  <div class="card-icon">🃏</div>
-  <div class="card-text">
-    <div class="card-title">Cartes Kibon 3è Dan</div>
-    <div class="card-desc">Cartes officielles par catégorie — Module A</div>
-  </div>
-  <div class="card-arrow">›</div>
-</a>
-
- </div>
+</div>
 
 <footer>Taekwondo · FFTDA</footer>
 
