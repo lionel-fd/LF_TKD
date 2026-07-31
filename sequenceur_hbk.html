@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrainement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0e0f11;
+    --surface:   #181a1e;
+    --border:    #2a2d33;
+    --text:      #e8eaf0;
+    --muted:     #6b7280;
+    --blue:      #4A90D9;
+    --blue-dim:  #1e3a5f;
+    --green:     #7DC742;
+    --green-dim: #253d14;
+    --yellow:    #F5C518;
+    --yellow-dim:#3d3005;
+    --coral:     #e05252;
+  }
+
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(18px, 4vw, 26px);
+    letter-spacing: 0.08em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .header-title span {
+    color: var(--muted);
+    font-size: 0.7em;
+    margin-right: 8px;
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 24px 48px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 110px;
+    flex-shrink: 0;
+  }
+  select {
+    flex: 1;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+  }
+
+  .diff-row {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .diff-row label { display: flex; align-items: center; gap: 5px; width: auto; text-transform: none; letter-spacing: 0; font-family: 'Barlow', sans-serif; }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 124px;
+    margin-top: -8px;
+    line-height: 1.4;
+  }
+
+  .draw-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    letter-spacing: .01em;
+    transition: background .15s, border-color .15s;
+    margin-bottom: 20px;
+  }
+  .draw-btn:hover { background: #21262d; border-color: var(--coral); }
+  .draw-btn:active { transform: scale(.99); }
+
+  .schema-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .seq {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    animation: fadeIn .35s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--border);
+    width: 22px;
+    flex-shrink: 0;
+  }
+
+  .step-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .step-name.role-position { color: var(--blue); }
+
+  .step-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .step.role-blocage   { border-left: 3px solid var(--green); }
+  .step.role-attaque    { border-left: 3px solid var(--coral); }
+  .step.role-position  { border-left: 3px solid var(--blue); }
+
+  .empty {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .home-link {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .home-link:hover { color: var(--text); }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: 11px;
+    color: #484f58;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    header { padding: 14px 16px; }
+    main { padding: 20px 16px 40px; }
+    .field label { width: 90px; font-size: 11px; }
+    .hint { margin-left: 104px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <span>MODULE B</span>ENTRAINEMENT
+  </div>
+</header>
+
+<main>
+  <div class="controls">
+    <div class="field">
+      <label>Schéma</label>
+      <select id="schemaSel">
+        <option value="1">Schéma 1</option>
+        <option value="2">Schéma 2</option>
+        <option value="random">Aléatoire (1 ou 2)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Grade max</label>
+      <select id="grade">
+        <option value="1 - blanc">1 - blanc</option>
+        <option value="2 - jaune">2 - jaune</option>
+        <option value="3 - orange">3 - orange</option>
+        <option value="4 - vert">4 - vert</option>
+        <option value="5 - bleu" selected>5 - bleu</option>
+        <option value="6 - rouge">6 - rouge</option>
+        <option value="7 - rouge B1">7 - rouge B1</option>
+        <option value="8 - rouge B2">8 - rouge B2</option>
+        <option value="Koryo - 1e dan">Koryo - 1er dan</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Difficulté</label>
+      <div class="diff-row">
+        <label><input type="checkbox" disabled checked> facile</label>
+        <label><input type="checkbox" disabled checked> avancé</label>
+        <label><input type="checkbox" disabled checked> expert</label>
+      </div>
+    </div>
+    <p class="hint">Filtre inactif — difficulté non renseignée dans les données pour l'instant.</p>
+    <p class="hint">Nombre d'éléments tiré au hasard : 3, 4 ou 6 (schéma 1) · 4 ou 5 (schéma 2).</p>
+  </div>
+
+  <button class="draw-btn" id="genBtn">Générer un enchaînement</button>
+
+  <div class="schema-tag" id="schemaLabel"></div>
+  <div class="seq" id="result"></div>
+
+  <a class="home-link" href="index.html">← Retour à l'accueil</a>
+</main>
+
+<div class="footer">Expérimental</div>
+
+<script>
+const GRADE_ORDER = ["1 - blanc","2 - jaune","3 - orange","4 - vert","5 - bleu","6 - rouge","7 - rouge B1","8 - rouge B2","Koryo - 1e dan"];
+
+const TECHS = [
+  {"nom":"A gui son caljaebi","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Dang kyeu teuk jileugui","categorie":"attaque-bras","grade":"8 - rouge B2"},
+  {"nom":"Deung joumok eulgoul bakkat tchigui","categorie":"attaque-bras","grade":"7 - rouge B1"},
+  {"nom":"Jebipoum mok tchigui","categorie":"attaque-bras","grade":"4 - vert"},
+  {"nom":"Joumok pyojok jileugui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Me joumok nelyeu tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
+  {"nom":"Momtong doubonn jileugui","categorie":"attaque-bras","grade":"3 - orange"},
+  {"nom":"Mouroup kokki","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Palkoup dolyeu tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
+  {"nom":"Palkoup pyojok tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
+  {"nom":"Palkoup yop tchigui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Pyon son keut are jetcheu tchireugui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Pyon sonkeut sewo tchileugui","categorie":"attaque-bras","grade":"4 - vert"},
+  {"nom":"(han) sonnal mok tchigui","categorie":"attaque-bras","grade":"3 - orange"},
+  {"nom":"momtong jileugui","categorie":"attaque-bras","grade":"1 - blanc"},
+  {"nom":"eulgoul jileugui","categorie":"attaque-bras","grade":"2 - jaune"},
+  {"nom":"Deung joumok ap tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
+  {"nom":"dou joumok jecho jireugui","categorie":"attaque-bras","grade":"7 - rouge B1"},
+  {"nom":"dan","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
+  {"nom":"Ap bal foulyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
+  {"nom":"Ap bal yop tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
+  {"nom":"Ap tchagui","categorie":"attaque-jambe","grade":"1 - blanc"},
+  {"nom":"Bandal tchagui","categorie":"attaque-jambe","grade":"1 - blanc"},
+  {"nom":"Dolyeu tchagui","categorie":"attaque-jambe","grade":"6 - rouge"},
+  {"nom":"Dou bal dang sang ap tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
+  {"nom":"Dwit bal kouroh foulyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
+  {"nom":"Dwitt tchagui","categorie":"attaque-jambe","grade":"3 - orange"},
+  {"nom":"Keudeup dolyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
+  {"nom":"Keudeup yop tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
+  {"nom":"Pyojok tchagui","categorie":"attaque-jambe","grade":"7 - rouge B1"},
+  {"nom":"Sokkot tchagui","categorie":"attaque-jambe","grade":"5 - bleu"},
+  {"nom":"Tuyeu dolyeu tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
+  {"nom":"Tuyeu dwitt tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
+  {"nom":"Tuyeu mom dolyeu foulyeu tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
+  {"nom":"Yop tchagui","categorie":"attaque-jambe","grade":"4 - vert"},
+  {"nom":"Mouroup tchigui","categorie":"attaque-jambe","grade":"7 - rouge B1"},
+  {"nom":"An palmok momtong hetcheu maki","categorie":"blocage","grade":"Koryo - 1e dan"},
+  {"nom":"Batang son noulo maki","categorie":"blocage","grade":"4 - vert"},
+  {"nom":"(Han) sonnal are maki","categorie":"blocage","grade":"Koryo - 1e dan"},
+  {"nom":"(Han) sonnal momtong bakkat maki","categorie":"blocage","grade":"3 - orange"},
+  {"nom":"(Han) sonnal momtong yop maki","categorie":"blocage","grade":"7 - rouge B1"},
+  {"nom":"Kaoui maki","categorie":"blocage","grade":"7 - rouge B1"},
+  {"nom":"Keudeuro are maki","categorie":"blocage","grade":"8 - rouge B2"},
+  {"nom":"Keudeuro momtong bakkat maki","categorie":"blocage","grade":"8 - rouge B2"},
+  {"nom":"Momtong hetcheu maki","categorie":"blocage","grade":"8 - rouge B2"},
+  {"nom":"Owe san teul maki","categorie":"blocage","grade":"8 - rouge B2"},
+  {"nom":"(koudouro) Sonnal momtong maki","categorie":"blocage","grade":"4 - vert"},
+  {"nom":"are maki","categorie":"blocage","grade":"1 - blanc"},
+  {"nom":"momtong maki","categorie":"blocage","grade":"1 - blanc"},
+  {"nom":"eulgoul maki","categorie":"blocage","grade":"1 - blanc"},
+  {"nom":"Bitouro maki","categorie":"blocage","grade":"6 - rouge"},
+  {"nom":"Batang son momtong maki","categorie":"blocage","grade":"6 - rouge"},
+  {"nom":"utgeuro are maki","categorie":"blocage","grade":"7 - rouge B1"},
+  {"nom":"ap seugui","categorie":"position","grade":"1 - blanc"},
+  {"nom":"ap koubi seugui","categorie":"position","grade":"1 - blanc"},
+  {"nom":"dwitt koubi seugui","categorie":"position","grade":"3 - orange"},
+  {"nom":"bom seugui","categorie":"position","grade":"7 - rouge B1"}
+];
+
+function pickOne(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function pickN(arr, n, excludeNames){
+  const excl = excludeNames || [];
+  const copy = arr.filter(t => !excl.includes(t.nom));
+  const out = [];
+  for (let i=0; i<n && copy.length>0; i++){
+    const idx = Math.floor(Math.random()*copy.length);
+    out.push(copy.splice(idx,1)[0]);
+  }
+  return out;
+}
+
+function pickFrom(values){ return values[Math.floor(Math.random()*values.length)]; }
+
+const catLabel = { 'blocage':'blocage', 'attaque-bras':'attaque bras', 'attaque-jambe':'attaque jambe', 'position':'position' };
+
+function generate(){
+  const gradeMax = document.getElementById('grade').value;
+  const gradeIdx = GRADE_ORDER.indexOf(gradeMax);
+  const schemaChoice = document.getElementById('schemaSel').value;
+
+  const pool = TECHS.filter(t => GRADE_ORDER.indexOf(t.grade) <= gradeIdx);
+  const positions = pool.filter(t => t.categorie === 'position');
+  const blocages = pool.filter(t => t.categorie === 'blocage');
+  const attaquesMix = pool.filter(t => t.categorie === 'attaque-bras' || t.categorie === 'attaque-jambe');
+  const attaquesBras = pool.filter(t => t.categorie === 'attaque-bras');
+
+  const result = document.getElementById('result');
+  const schemaLabel = document.getElementById('schemaLabel');
+
+  if (positions.length < 1 || blocages.length === 0 || attaquesMix.length === 0 || attaquesBras.length === 0){
+    result.innerHTML = '<p class="empty">Pas assez de techniques disponibles pour ce grade.</p>';
+    schemaLabel.textContent = '';
+    return;
+  }
+
+  const schema = schemaChoice === 'random' ? pickFrom([1,2]) : parseInt(schemaChoice, 10);
+  let seq = [];
+
+  if (schema === 1){
+    const n = pickFrom([3, 4, 6]);
+    schemaLabel.textContent = `Schéma 1 · ${n} éléments`;
+
+    const pos1 = pickOne(positions);
+    const bloc = pickOne(blocages);
+    const nBlock1 = n >= 4 ? 2 : 1;
+    const block1 = pickN(attaquesMix, nBlock1);
+
+    seq = [
+      {...pos1, role:'position'},
+      {...bloc, role:'blocage'},
+      ...block1.map(t => ({...t, role:'attaque'}))
+    ];
+
+    if (n === 6){
+      const pos2 = pickOne(positions); // peut être la même
+      seq.push({...pos2, role:'position'});
+      const excl = block1.map(t=>t.nom);
+      const finalAtt = pickN(attaquesBras, 1, excl)[0] || pickN(attaquesBras,1)[0];
+      if (finalAtt) seq.push({...finalAtt, role:'attaque'});
+    }
+  } else {
+    const n = pickFrom([4, 5]);
+    schemaLabel.textContent = `Schéma 2 · ${n} éléments`;
+
+    const pos1 = pickOne(positions);
+    const bloc = pickOne(blocages);
+    const pos2 = pickOne(positions); // peut être la même que pos1
+
+    seq = [
+      {...pos1, role:'position'},
+      {...bloc, role:'blocage'},
+      {...pos2, role:'position'}
+    ];
+
+    const nAtt = n === 5 ? 2 : 1;
+    const block = pickN(attaquesMix, nAtt);
+    seq.push(...block.map(t => ({...t, role:'attaque'})));
+  }
+
+  result.innerHTML = seq.map((t,i) => `
+    <div class="step role-${t.role}">
+      <div class="step-num">${i+1}</div>
+      <div>
+        <div class="step-name role-${t.role}">${t.nom}</div>
+        <div class="step-meta">${catLabel[t.categorie]} · ${t.grade}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('genBtn').addEventListener('click', generate);
+generate();
+</script>
+</body>
+</html>
