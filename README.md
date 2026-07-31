@@ -26,14 +26,11 @@ Le projet est un site statique : aucun paquet, compilation ni serveur applicatif
 
 2. Ouvrez `index.html` dans votre navigateur.
 
-Pour un test plus proche des conditions de publication (et pour éviter les restrictions éventuelles de certains navigateurs), servez simplement le dossier avec un serveur HTTP local, par exemple :
-
+Pour un test plus proche des conditions de publication (et pour éviter les restrictions éventuelles de certains navigateurs), copiez le lien de l'objet à tester après le lien preview GitHub suivant:
 ```bash
-python -m http.server 8000
+https://htmlpreview.github.io/?
 ```
-
-Puis ouvrez [http://localhost:8000](http://localhost:8000).
-
+exemple : https://htmlpreview.github.io/?https://github.com/lionel-fd/LF_TKD/blob/Test/index.html
 ## Utilisation
 
 Depuis la page d’accueil :
