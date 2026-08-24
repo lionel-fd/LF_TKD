@@ -8,6 +8,7 @@ Le site regroupe des fiches de poomsés, des outils de tirage aléatoire et des 
 ## Fonctionnalités
 
 - **Fiches de poomsés** : Taegeuk 1 à 8 et Dan 1–2, avec éléments de symbolique et repères techniques.
+- **Séquenceur Han Bon Kyorugui** : Générateur d'enchainements selon le grade pour étudier ce qui fonctionne ou non et développer l'intuition et la créativité. 
 - **Tirages de kibon** : sélection aléatoire de deux cartes dans chaque catégorie pour les 1er, 2e et 3e Dan.
 - **Cartes de révision** : consultation par catégorie, avec navigation au clavier et au balayage tactile.
 - **Lexiques** : liens vers des documents de référence de la FFTDA (termes courants, positions, techniques de bras et de pieds).
@@ -35,9 +36,9 @@ exemple : https://htmlpreview.github.io/?https://github.com/lionel-fd/LF_TKD/blo
 
 Depuis la page d’accueil :
 
-1. Choisissez une ressource : fiches de poomsés, tirage ou cartes de kibon.
-2. Pour un **tirage**, cliquez sur « Tirer 2 cartes par catégorie ».
-3. Pour les **cartes**, choisissez une catégorie, puis un numéro de carte.
+1. Choisissez une ressource : fiches de poomsés, séquenceur Han bon kyorugui, tirage ou cartes de kibon.
+   2. Pour un **tirage**, cliquez sur « Tirer 2 cartes par catégorie ».
+   3. Pour les **cartes**, choisissez une catégorie, puis un numéro de carte.
 4. Dans l’affichage d’une carte, utilisez les flèches, les touches `←`/`→` ou le balayage tactile pour naviguer.
 
 Les trois niveaux de kibon proposent les catégories suivantes :
