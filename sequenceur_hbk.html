@@ -752,9 +752,10 @@ function generate(){
   const gradeIdx = GRADE_ORDER.indexOf(gradeMax);
   const schemaChoice = document.getElementById('schemaSel').value;
 
-  const allowedDiff = [];
-  if (document.getElementById('diffbase').checked) allowedDiff.push('base');
-  if (document.getElementById('diffavance').checked) allowedDiff.push('avance');
+code à intégrer quand le filtre difficulté sera activé
+  "const allowedDiff = [];
+  "if (document.getElementById('diffbase').checked) allowedDiff.push('base');
+  "if (document.getElementById('diffavance').checked) allowedDiff.push('avance');
  
   const pool = TECHS.filter(t => GRADE_ORDER.indexOf(t.grade) <= gradeIdx);
   const positions = pool.filter(t => t.categorie === 'position');
