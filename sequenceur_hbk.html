@@ -256,8 +256,8 @@
     <div class="field">
       <label>Difficulté</label>
       <div class="diff-row">
-        <label><input type="checkbox" id="diffBase" checked> base</label>
-        <label><input type="checkbox" id="diffAvance" checked> avancé</label>
+        <label><input type="checkbox" id="diffbase" checked> base</label>
+        <label><input type="checkbox" id="diffavance" checked> avance</label>
       </div>
     </div>
     <p class="hint">Nombre d'éléments tiré au hasard : 3, 4 ou 6 (schéma 1) · 4 ou 5 (schéma 2).</p>
@@ -555,7 +555,7 @@ const TECHS =
     "id": "T040",
     "nom": "Owe san teul maki",
     "categorie": "blocage",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "8 - rouge B2"
   },
   {
@@ -674,7 +674,7 @@ const TECHS =
     "id": "T057",
     "nom": "beum seugui",
     "categorie": "position",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "7 - rouge B1"
   },
     {
@@ -695,7 +695,7 @@ const TECHS =
     "id": "T060",
     "nom": "dwitt koa seugui",
     "categorie": "position",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "5 - bleu"
   },
   {
@@ -709,24 +709,25 @@ const TECHS =
     "id": "T062",
     "nom": "ap bal tuyeu ap tchagui",
     "categorie": "attaque-jambe",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "8 - rouge B2"
   },
   {
     "id": "T063",
     "nom": "Diodora dolyeu tchagui",
     "categorie": "attaque-jambe",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "8 - rouge B2"
   },
   {
     "id": "T064",
     "nom": "Diodora nelyeu tchagui",
     "categorie": "attaque-jambe",
-    "difficulte": "avancé",
+    "difficulte": "avance",
     "grade": "8 - rouge B2"
   }
-];
+]
+;
 
 function pickOne(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
@@ -752,7 +753,7 @@ function generate(){
 
   const allowedDiff = [];
   if (document.getElementById('diffBase').checked) allowedDiff.push('base');
-  if (document.getElementById('diffAvance').checked) allowedDiff.push('avancé');
+  if (document.getElementById('diffAvance').checked) allowedDiff.push('avance');
  
   const pool = TECHS.filter(t => GRADE_ORDER.indexOf(t.grade) <= gradeIdx);
   const positions = pool.filter(t => t.categorie === 'position');
