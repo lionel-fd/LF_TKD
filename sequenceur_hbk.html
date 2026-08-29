@@ -279,63 +279,455 @@
 const GRADE_ORDER = ["1 - blanc","2 - jaune","3 - orange","4 - vert","5 - bleu","6 - rouge","7 - rouge B1","8 - rouge B2","Koryo - 1e dan","Keumgan - 2e dan"];
 
 const TECHS = [
-  {"nom":"A gui son caljaebi","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Dang kyeu teuk jileugui","categorie":"attaque-bras","grade":"8 - rouge B2"},
-  {"nom":"Deung joumok eulgoul bakkat tchigui","categorie":"attaque-bras","grade":"7 - rouge B1"},
-  {"nom":"Jebipoum mok tchigui","categorie":"attaque-bras","grade":"4 - vert"},
-  {"nom":"Joumok pyojok jileugui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Me joumok nelyeu tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
-  {"nom":"Momtong doubonn jileugui","categorie":"attaque-bras","grade":"3 - orange"},
-  {"nom":"Mouroup kokki","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Palkoup dolyeu tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
-  {"nom":"Palkoup pyojok tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
-  {"nom":"Palkoup yop tchigui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Pyon son keut are jetcheu tchireugui","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Pyon sonkeut sewo tchileugui","categorie":"attaque-bras","grade":"4 - vert"},
-  {"nom":"(han) sonnal mok tchigui","categorie":"attaque-bras","grade":"3 - orange"},
-  {"nom":"momtong jileugui","categorie":"attaque-bras","grade":"1 - blanc"},
-  {"nom":"eulgoul jileugui","categorie":"attaque-bras","grade":"2 - jaune"},
-  {"nom":"Deung joumok ap tchigui","categorie":"attaque-bras","grade":"5 - bleu"},
-  {"nom":"dou joumok jecho jireugui","categorie":"attaque-bras","grade":"7 - rouge B1"},
-  {"nom":"dan","categorie":"attaque-bras","grade":"Koryo - 1e dan"},
-  {"nom":"Ap bal foulyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
-  {"nom":"Ap bal yop tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
-  {"nom":"Ap tchagui","categorie":"attaque-jambe","grade":"1 - blanc"},
-  {"nom":"Bandal tchagui","categorie":"attaque-jambe","grade":"1 - blanc"},
-  {"nom":"Dolyeu tchagui","categorie":"attaque-jambe","grade":"6 - rouge"},
-  {"nom":"Dou bal dang sang ap tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
-  {"nom":"Dwit bal kouroh foulyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
-  {"nom":"Dwitt tchagui","categorie":"attaque-jambe","grade":"3 - orange"},
-  {"nom":"Keudeup dolyeu tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
-  {"nom":"Keudeup yop tchagui","categorie":"attaque-jambe","grade":"Koryo - 1e dan"},
-  {"nom":"Pyojok tchagui","categorie":"attaque-jambe","grade":"7 - rouge B1"},
-  {"nom":"Sokkot tchagui","categorie":"attaque-jambe","grade":"5 - bleu"},
-  {"nom":"Tuyeu dolyeu tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
-  {"nom":"Tuyeu dwitt tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
-  {"nom":"Tuyeu mom dolyeu foulyeu tchagui","categorie":"attaque-jambe","grade":"8 - rouge B2"},
-  {"nom":"Yop tchagui","categorie":"attaque-jambe","grade":"4 - vert"},
-  {"nom":"Mouroup tchigui","categorie":"attaque-jambe","grade":"7 - rouge B1"},
-  {"nom":"An palmok momtong hetcheu maki","categorie":"blocage","grade":"Koryo - 1e dan"},
-  {"nom":"Batang son noulo maki","categorie":"blocage","grade":"4 - vert"},
-  {"nom":"(Han) sonnal are maki","categorie":"blocage","grade":"Koryo - 1e dan"},
-  {"nom":"(Han) sonnal momtong bakkat maki","categorie":"blocage","grade":"3 - orange"},
-  {"nom":"(Han) sonnal momtong yop maki","categorie":"blocage","grade":"7 - rouge B1"},
-  {"nom":"Kaoui maki","categorie":"blocage","grade":"7 - rouge B1"},
-  {"nom":"Keudeuro are maki","categorie":"blocage","grade":"8 - rouge B2"},
-  {"nom":"Keudeuro momtong bakkat maki","categorie":"blocage","grade":"8 - rouge B2"},
-  {"nom":"Momtong hetcheu maki","categorie":"blocage","grade":"8 - rouge B2"},
-  {"nom":"Owe san teul maki","categorie":"blocage","grade":"8 - rouge B2"},
-  {"nom":"(koudouro) Sonnal momtong maki","categorie":"blocage","grade":"4 - vert"},
-  {"nom":"are maki","categorie":"blocage","grade":"1 - blanc"},
-  {"nom":"momtong maki","categorie":"blocage","grade":"1 - blanc"},
-  {"nom":"eulgoul maki","categorie":"blocage","grade":"1 - blanc"},
-  {"nom":"Bitouro maki","categorie":"blocage","grade":"6 - rouge"},
-  {"nom":"Batang son momtong maki","categorie":"blocage","grade":"6 - rouge"},
-  {"nom":"utgeuro are maki","categorie":"blocage","grade":"7 - rouge B1"},
-  {"nom":"ap seugui","categorie":"position","grade":"1 - blanc"},
-  {"nom":"ap koubi seugui","categorie":"position","grade":"1 - blanc"},
-  {"nom":"dwitt koubi seugui","categorie":"position","grade":"3 - orange"},
-  {"nom":"bom seugui","categorie":"position","grade":"7 - rouge B1"}
+ [
+  {
+    "id": "T001",
+    "nom": "A gui son caljaebi",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T002",
+    "nom": "Dang kyeu teuk jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T003",
+    "nom": "Deung joumok eulgoul bakkat tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T004",
+    "nom": "Jebipoum mok tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "4 - vert"
+  },
+  {
+    "id": "T005",
+    "nom": "Joumok pyojok jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T006",
+    "nom": "Me joumok nelyeu tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T007",
+    "nom": "Momtong doubonn jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "3 - orange"
+  },
+  {
+    "id": "T008",
+    "nom": "Mouroup kokki",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T009",
+    "nom": "Palkoup dolyeu tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T010",
+    "nom": "Palkoup pyojok tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T011",
+    "nom": "Palkoup yop tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T012",
+    "nom": "Pyon son keut are jetcheu tchireugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T013",
+    "nom": "Pyon sonkeut sewo tchileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "4 - vert"
+  },
+  {
+    "id": "T014",
+    "nom": "Ap bal foulyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T015",
+    "nom": "Ap bal yop tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T016",
+    "nom": "Ap tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T017",
+    "nom": "Bandal tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T018",
+    "nom": "Dolyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "6 - rouge"
+  },
+  {
+    "id": "T019",
+    "nom": "Dou bal dang sang ap tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T020",
+    "nom": "Dwitt bal kouroh foulyeu tchagui (glissé)",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T021",
+    "nom": "Dwitt tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "3 - orange"
+  },
+  {
+    "id": "T022",
+    "nom": "Keudeup dolyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T023",
+    "nom": "Keudeup yop tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T024",
+    "nom": "Pyojok tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T025",
+    "nom": "Sokkot tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T026",
+    "nom": "Tuyeu dolyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T027",
+    "nom": "Tuyeu dwitt tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T028",
+    "nom": "Tuyeu mom dolyeu foulyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T029",
+    "nom": "Yop tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "4 - vert"
+  },
+  {
+    "id": "T030",
+    "nom": "An palmok momtong hetcheu maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T031",
+    "nom": "Batang son noulo maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "4 - vert"
+  },
+  {
+    "id": "T032",
+    "nom": "(Han) sonnal are maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T033",
+    "nom": "(Han) sonnal momtong bakkat maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "3 - orange"
+  },
+  {
+    "id": "T034",
+    "nom": "(Han) sonnal momtong yop maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T035",
+    "nom": "Kaoui maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T036",
+    "nom": "Keudeuro are maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T037",
+    "nom": "Keudeuro momtong bakkat maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T038",
+    "nom": "Momtong hetcheu maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T039",
+    "nom": "(han) sonnal mok tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "3 - orange"
+  },
+  {
+    "id": "T040",
+    "nom": "Owe san teul maki",
+    "categorie": "blocage",
+    "difficulte": avancé,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T041",
+    "nom": "keudeuro - Sonnal momtong maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "4 - vert"
+  },
+  {
+    "id": "T042",
+    "nom": "are maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T043",
+    "nom": "momtong maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T044",
+    "nom": "eulgoul maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T045",
+    "nom": "momtong jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T046",
+    "nom": "eulgoul jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "2 - jaune"
+  },
+  {
+    "id": "T047",
+    "nom": "Deung joumok eulgoug ap tchigui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T048",
+    "nom": "(Han) Sonnal Bitouro maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "6 - rouge"
+  },
+  {
+    "id": "T049",
+    "nom": "Batang son momtong maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "6 - rouge"
+  },
+  {
+    "id": "T050",
+    "nom": "Mouroup tchigui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T051",
+    "nom": "dou joumok jetcheu jireugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T052",
+    "nom": "utgeuro are maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T053",
+    "nom": "joutchoum seugui",
+    "categorie": "position",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T054",
+    "nom": "ap seugui",
+    "categorie": "position",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T055",
+    "nom": "ap koubi seugui",
+    "categorie": "position",
+    "difficulte": null,
+    "grade": "1 - blanc"
+  },
+  {
+    "id": "T056",
+    "nom": "dwitt koubi seugui",
+    "categorie": "position",
+    "difficulte": null,
+    "grade": "3 - orange"
+  },
+  {
+    "id": "T057",
+    "nom": "beum seugui",
+    "categorie": "position",
+    "difficulte": avancé,
+    "grade": "7 - rouge B1"
+  },
+    {
+    "id": "T058",
+    "nom": "momtong yop jileugui",
+    "categorie": "attaque-bras",
+    "difficulte": null,
+    "grade": "7 - rouge B1"
+  },
+  {
+    "id": "T059",
+    "nom": "Keureuro - sonnal are maki",
+    "categorie": "blocage",
+    "difficulte": null,
+    "grade": "Koryo - 1e dan"
+  },
+  {
+    "id": "T060",
+    "nom": "dwitt koa seugui",
+    "categorie": "position",
+    "difficulte": avancé,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T061",
+    "nom": "nelyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": null,
+    "grade": "5 - bleu"
+  },
+  {
+    "id": "T062",
+    "nom": "ap bal tuyeu ap tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": avancé,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T063",
+    "nom": "Diodora dolyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": avancé,
+    "grade": "8 - rouge B2"
+  },
+  {
+    "id": "T064",
+    "nom": "Diodora nelyeu tchagui",
+    "categorie": "attaque-jambe",
+    "difficulte": avancé,
+    "grade": "8 - rouge B2"
+  }
 ];
 
 function pickOne(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
