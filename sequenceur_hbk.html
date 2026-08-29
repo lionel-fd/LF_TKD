@@ -755,8 +755,10 @@ function generate(){
   if (document.getElementById('Diffbase').checked) allowedDiff.push('base');
   if (document.getElementById('Diffavance').checked) allowedDiff.push('avance');
  
-  const pool = TECHS.filter(t => GRADE_ORDER.indexOf(t.grade) <= gradeIdx)&&
-  allowedDiff.includes(t.difficulte));
+  const pool = TECHS.filter(t =>
+  GRADE_ORDER.indexOf(t.grade) <= gradeIdx &&
+  allowedDiff.includes(t.difficulte)
+  );
   const positions = pool.filter(t => t.categorie === 'position');
   const blocages = pool.filter(t => t.categorie === 'blocage');
   const attaquesMix = pool.filter(t => t.categorie === 'attaque-bras' || t.categorie === 'attaque-jambe');
