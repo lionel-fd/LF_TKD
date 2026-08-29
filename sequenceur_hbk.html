@@ -256,11 +256,10 @@
     <div class="field">
       <label>Difficulté</label>
       <div class="diff-row">
-        <label><input type="checkbox" disabled checked> base</label>
-        <label><input type="checkbox" disabled checked> avance</label>
+        <label><input type="checkbox" id="Diffbase" checked> base</label>
+        <label><input type="checkbox" id="Diffavance" unchecked> avance</label>
       </div>
     </div>
-    <p class="hint">filtre difficulté désactivé pour le moment.</p>
     <p class="hint">Nombre d'éléments tiré au hasard : 3, 4 ou 6 (schéma 1) · 4 ou 5 (schéma 2).</p>
   </div>
 
@@ -752,10 +751,9 @@ function generate(){
   const gradeIdx = GRADE_ORDER.indexOf(gradeMax);
   const schemaChoice = document.getElementById('schemaSel').value;
 
-code à intégrer quand le filtre difficulté sera activé
-  "const allowedDiff = [];
-  "if (document.getElementById('diffbase').checked) allowedDiff.push('base');
-  "if (document.getElementById('diffavance').checked) allowedDiff.push('avance');
+  const allowedDiff = [];
+  if (document.getElementById('Diffbase').checked) allowedDiff.push('base');
+  if (document.getElementById('Diffavance').checked) allowedDiff.push('avance');
  
   const pool = TECHS.filter(t => GRADE_ORDER.indexOf(t.grade) <= gradeIdx);
   const positions = pool.filter(t => t.categorie === 'position');
